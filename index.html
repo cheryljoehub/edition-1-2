@@ -57,6 +57,29 @@
     opacity: 1;
     transform: translateY(0);
   }
+  #screensaver.image-slide .ss-inner {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    padding: 0;
+  }
+  #screensaver.image-slide .ss-mark,
+  #screensaver.image-slide .ss-dots,
+  #screensaver.image-slide .ss-hint {
+    display: none;
+  }
+  #screensaver.image-slide .ss-content {
+    width: 100vw;
+    height: 100vh;
+    min-height: 0;
+  }
+  #screensaver .ss-image {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    object-fit: contain;
+  }
   #screensaver .ss-quote {
     font-family: 'Fraunces', serif;
     font-weight: 700;
