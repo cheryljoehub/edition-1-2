@@ -3,7 +3,7 @@
    Tweak these two numbers to change behavior.
    ============================================================ */
 
-const IDLE_TIMEOUT_MS = 45000;   // how long with no touch before it appears (45s)
+const IDLE_TIMEOUT_MS = 25000;   // how long with no touch before it appears (25s)
 const SLIDE_INTERVAL_MS = 7000;  // how long each slide stays up (7s)
 
 /* ============================================================
@@ -17,6 +17,9 @@ const SLIDE_INTERVAL_MS = 7000;  // how long each slide stays up (7s)
    ============================================================ */
 
 const SLIDES = [
+  { type: "image", src: "images/logos/7.png", alt: "College of Business logo" },
+  { type: "image", src: "images/logos/8.png", alt: "College of Business logo" },
+  { type: "image", src: "images/logos/9.png", alt: "College of Business logo" },
   { type: "cta", title: "Tap a Tile to Get Started", sub: "Career Finder, Job Postings, Faculty, and more" },
   { type: "quote", text: "Culture eats strategy for breakfast.", author: "Peter Drucker" },
   { type: "fact", text: "The average successful founder is 45 years old when starting their breakout company \u2014 not in their early 20s." },
@@ -41,6 +44,9 @@ let currentSlide = 0;
 let overlay, contentEl, dotsEl;
 
 function buildSlideHTML(slide) {
+  if (slide.type === "image") {
+    return `<img class="ss-image" src="${slide.src}" alt="${slide.alt}">`;
+  }
   if (slide.type === "quote") {
     return `
       <p class="ss-quote">&ldquo;${slide.text}&rdquo;</p>
@@ -69,6 +75,7 @@ function buildDots() {
 function showSlide(index) {
   currentSlide = index;
   contentEl.classList.remove("in");
+  overlay.classList.toggle("image-slide", SLIDES[currentSlide].type === "image");
   setTimeout(() => {
     contentEl.innerHTML = buildSlideHTML(SLIDES[currentSlide]);
     buildDots();
@@ -78,7 +85,15 @@ function showSlide(index) {
   }, 250);
 }
 
+function shuffleSlides() {
+  for (let index = SLIDES.length - 1; index > 0; index--) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [SLIDES[index], SLIDES[randomIndex]] = [SLIDES[randomIndex], SLIDES[index]];
+  }
+}
+
 function startSlideshow() {
+  shuffleSlides();
   showSlide(0);
   slideTimer = setInterval(() => {
     const next = (currentSlide + 1) % SLIDES.length;
