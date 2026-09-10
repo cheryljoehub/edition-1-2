@@ -4,7 +4,7 @@
    ============================================================ */
 
 const IDLE_TIMEOUT_MS = 25000;   // how long with no touch before it appears (25s)
-const SLIDE_INTERVAL_MS = 7000;  // how long each slide stays up (7s)
+const SLIDE_INTERVAL_MS = 15000;  // how long each slide stays up (15s)
 
 /* ============================================================
    CONTENT BANK
@@ -21,15 +21,11 @@ const SLIDES = [
   { type: "image", src: "images/logos/8.png", alt: "College of Business logo" },
   { type: "image", src: "images/logos/9.png", alt: "College of Business logo" },
   { type: "cta", title: "Tap a Tile to Get Started", sub: "Career Finder, Job Postings, Faculty, and more" },
-  { type: "quote", text: "Culture eats strategy for breakfast.", author: "Peter Drucker" },
   { type: "fact", text: "The average successful founder is 45 years old when starting their breakout company \u2014 not in their early 20s." },
   { type: "quote", text: "It is not the strongest that survive, but those most responsive to change.", author: "Often attributed to Charles Darwin" },
   { type: "fact", text: "There are over 200 distinct career paths within a typical College of Business \u2014 far more than finance, marketing, and accounting alone." },
   { type: "quote", text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
-  { type: "fact", text: "Most students change their intended major at least once before graduating \u2014 exploring is part of the process." },
   { type: "quote", text: "Price is what you pay. Value is what you get.", author: "Warren Buffett" },
-  { type: "cta", title: "Try Today's Would You Rather", sub: "A new business dilemma every day \u2014 tap the tile to vote" },
-  { type: "fact", text: "Supply chain roles are among the fastest-growing career paths in business \u2014 often overlooked by students." },
   { type: "quote", text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
   { type: "cta", title: "New Jobs Posted Every Monday", sub: "Check the Job Opportunities tile for this week's openings" }
 ];
