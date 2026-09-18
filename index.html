@@ -111,15 +111,74 @@
     color: #D9CDEA;
   }
   #screensaver .ss-hint {
-    margin-top: 40px;
+    margin: 14px 0 0;
     font-size: 13px;
     color: #D9CDEA;
     opacity: 0.75;
-    animation: ss-pulse 2.2s ease-in-out infinite;
   }
-  @keyframes ss-pulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.9; }
+  #screensaver .ss-action {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 210px;
+    min-height: 64px;
+    margin-top: 34px;
+    padding: 14px 28px;
+    border: 2px solid rgba(255, 255, 255, 0.72);
+    border-radius: 999px;
+    background: linear-gradient(105deg, #FFC627 0%, #FFD45C 42%, #FFC627 62%, #E8AE1B 100%);
+    background-size: 220% 100%;
+    color: #241536;
+    font: 800 16px/1 'Manrope', sans-serif;
+    letter-spacing: 0.16em;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 rgba(255, 198, 39, 0.55), 0 12px 28px rgba(8, 4, 18, 0.28);
+    animation: ss-button-pulse 2.2s ease-in-out infinite, ss-button-shimmer 3.6s linear infinite;
+    transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  }
+  #screensaver .ss-action::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(112deg, transparent 25%, rgba(255, 255, 255, 0.7) 48%, transparent 68%);
+    transform: translateX(-125%);
+    animation: ss-button-sheen 3.6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  #screensaver .ss-action:hover,
+  #screensaver .ss-action:focus-visible {
+    filter: brightness(1.08);
+    box-shadow: 0 0 0 7px rgba(255, 198, 39, 0.16), 0 14px 30px rgba(8, 4, 18, 0.34);
+    outline: none;
+  }
+  #screensaver .ss-action:active {
+    transform: scale(0.95);
+    filter: brightness(0.96);
+    box-shadow: 0 0 0 4px rgba(255, 198, 39, 0.12), 0 6px 14px rgba(8, 4, 18, 0.25);
+  }
+  #screensaver.image-slide .ss-action {
+    display: none;
+  }
+  @keyframes ss-button-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 198, 39, 0.5), 0 12px 28px rgba(8, 4, 18, 0.28); }
+    50% { box-shadow: 0 0 0 13px rgba(255, 198, 39, 0), 0 12px 28px rgba(8, 4, 18, 0.28); }
+  }
+  @keyframes ss-button-shimmer {
+    0%, 100% { background-position: 100% 0; }
+    50% { background-position: 0% 0; }
+  }
+  @keyframes ss-button-sheen {
+    0%, 35% { transform: translateX(-125%); }
+    70%, 100% { transform: translateX(125%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #screensaver .ss-action,
+    #screensaver .ss-action::before {
+      animation: none;
+    }
   }
   #screensaver .ss-dots {
     display: flex;
@@ -277,6 +336,7 @@
       <div class="ss-mark">COLANGELO COLLEGE OF BUSINESS</div>
       <div class="ss-content" id="ss-content"></div>
       <div class="ss-dots" id="ss-dots"></div>
+      <button class="ss-action" id="ss-action" type="button" aria-label="Push to continue">PUSH ME</button>
       <div class="ss-hint">Tap anywhere to continue</div>
     </div>
   </div>
